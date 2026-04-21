@@ -1,19 +1,24 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import express from "express";
 import cors from "cors";
 import { connectDB } from "./config/db.js";
 import foodRouter from "./routes/foodRoute.js";
 import userRouter from "./routes/userRoute.js";
-import "dotenv/config";
 import cartRouter from "./routes/cartRoute.js";
 import orderRouter from "./routes/orderRoute.js";
 
 // app config
 const app = express();
-const port =process.env.PORT || 4000;
+const port = process.env.PORT || 4000;
 
-//middlewares
+// middlewares
 app.use(express.json());
 app.use(cors());
+
+// debug (VERY IMPORTANT)
+console.log("MONGO_URI:", process.env.MONGO_URI);
 
 // DB connection
 connectDB();
